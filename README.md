@@ -86,11 +86,19 @@ It should be noted that the equations and calculations listed above are indeed b
 </p>
 
 To account for various failure cases such as complete rotor failure, various MPC controllers are linked in parallel that are each tuned for a particular set of rotor dynamics. At each timestep, the control input sent to the quadcopter model is also sent to each of the controllers, and the resulting state of the quadcopter is compared to what each of the controllers predicted the quadcopter's state would be. For example, if rotor 3 fails, then the controller that has been specifically tuned around the dynamics of a three-rotored drone will have the most accurate prediction of the quadcopter's state following that control input. This controller will then become the active controller, until another controller predicts the quadcopter's state more accurately.
-  
+
+<p align="center">
+<img width="543" alt="mult_mpc_diag" src="https://github.com/frostyrez/MastersFYP/assets/123249055/dbeff25f-ba83-4d8b-b238-d92bc2d706b3">
+</p>
+<p align="center">
+  <i>Multiple MPC Control Diagram (System of systems approach)</i>
+</p>
+
 As you can see in the animation below, once the rotor is lost, the active controller is changed from `Act CTR = 1` to `Act CTR = 2`, and the drone stabilises. Otherwise, the rotor would have continued spinning out of control.
 
 <p align="center">
   <img src="https://github.com/frostyrez/MastersFYP/blob/main/robust.gif" />
+
 </p>
 
 <p align="center">
